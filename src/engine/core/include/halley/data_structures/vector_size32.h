@@ -582,6 +582,21 @@ namespace Halley {
 			return *this;
 		}
 
+		VectorStd& operator+= (std::optional<T>&& value)
+		{
+			if (value) {
+				push_back(std::move(*value));
+			}
+			return *this;
+		}
+
+		template <typename U>
+		VectorStd& operator+= (U&& value)
+		{
+			push_back(std::move(value));
+			return *this;
+		}
+
 		void swap(VectorStd& other) noexcept
 		{
 			std::swap(m_data, other.m_data);
